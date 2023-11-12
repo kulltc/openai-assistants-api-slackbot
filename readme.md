@@ -1,10 +1,10 @@
 # Tabular and SQL GPT Assistant
 ## Overview
-The Tabular and SQL GPT Assistant is an AI-powered tool designed to assist developers in troubleshooting and optimizing MSSAS (Tabular) data warehouses. It focuses on two critical layers: the SQL Data Warehouse and the Tabular Model (SSAS), which sits atop the SQL Server.
+The Tabular and SQL GPT Assistant is an AI-powered tool designed to assist developers in troubleshooting and understanding (Tabular Model) data warehouse projects. It focuses on two critical layers: the SQL Data Warehouse and the Tabular Model (SSAS), which sits atop the SQL Server.
 
 ## Key Features:
 - Code Insight Functions: Offers functions to access and analyze source code of both SQL and Tabular layers.
-- Knowledge Database: The Assisant can store things it learns. This learnings will be served as FAQ style info to the bot in future conversations based on embeddings search.  
+- Knowledge Database: The AI builds out a knowledge base as it goes, making it more efficient and knowledgeable the more you use it.  
 
 ## Usage
 - Go to api.slack.com and create a slack app. Create application and Bot tokens.
