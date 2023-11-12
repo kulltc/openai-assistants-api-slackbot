@@ -1,4 +1,4 @@
-### Tabular and SQL GPT Assistant
+# Tabular and SQL GPT Assistant
 ## Overview
 The Tabular and SQL GPT Assistant is an AI-powered tool designed to assist developers in troubleshooting and optimizing MSSAS (Tabular) data warehouses. It focuses on two critical layers: the SQL Data Warehouse and the Tabular Model (SSAS), which sits atop the SQL Server.
 
