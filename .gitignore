@@ -1,0 +1,3 @@
+app/config.ini
+app/openai_functions/memories/*
+__pycache__/
