@@ -22,7 +22,6 @@ class SlackBot:
         # Check if the message is from a bot or already in a thread
         if event.get("subtype") == "bot_message":
             return
-        print(event["text"])
         # Check for direct mention of the bot
         if event["channel"] in self.allowed_channels:
             connection = pika.BlockingConnection(pika.ConnectionParameters(

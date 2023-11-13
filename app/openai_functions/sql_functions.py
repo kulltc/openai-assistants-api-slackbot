@@ -6,12 +6,17 @@ ROOT = os.environ["SQL_ROOT_DIR"]
 
 
 def search_closest_filenames(root_dir, filename, num_matches=5):
+    searchTerm = filename.replace('.sql', '')
     sql_files = []
+    content_matches = []
     for subdir, dirs, files in os.walk(root_dir):
         for file in files:
             if file.endswith('.sql'):
                 full_path = os.path.join(subdir, file)
                 sql_files.append((file, full_path.replace(ROOT, '')))
+                with open(full_path, 'r',  encoding="utf8") as fileRead:
+                    if searchTerm in fileRead.read():
+                        content_matches.append(full_path.replace(ROOT, ''))
 
     # Extract just the filenames for matching
     file_names = [f[0] for f in sql_files]
@@ -27,7 +32,10 @@ def search_closest_filenames(root_dir, filename, num_matches=5):
                 closest_files_ordered.append(full_path)
                 break
 
-    return closest_files_ordered
+    return {
+        "file_name_search": closest_files_ordered,
+        "file_contents_search": content_matches
+    }
 
 def search_sql_file(searchTerm):
     return json.dumps(search_closest_filenames(ROOT, searchTerm))
