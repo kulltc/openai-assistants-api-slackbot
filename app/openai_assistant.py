@@ -92,7 +92,6 @@ class ConversationsManager:
     def _handle_required_action(self, run, thread_id):
         """ Process required actions for a run and submit tool outputs. """
         tool_outputs = self._process_tool_calls(run)
-        print(tool_outputs)
         try:
             return openai.beta.threads.runs.submit_tool_outputs(thread_id=thread_id, run_id=run.id, tool_outputs=tool_outputs)
         except Exception as err:
