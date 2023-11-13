@@ -41,7 +41,7 @@ def search_sql_file(searchTerm):
     try:
         return json.dumps(search_closest_filenames(ROOT, searchTerm))
     except Exception as e:
-        return json.dumps({"error": e})
+        return json.dumps({"error": str(e)})
 
 def read_sql_file(root_dir, file_path):
     # Convert both paths to absolute paths
@@ -63,7 +63,7 @@ def get_sql_file(location):
     try:
         return read_sql_file(ROOT, location)
     except Exception as e:
-        return json.dumps({"error": e})
+        return json.dumps({"error": str(e)})
 
 # print(search_sql_file('EmployeeBookedHours'))
 # print(get_sql_file('dbo\\Tables\\Facts\\FactEmployeeHours.sql'))
