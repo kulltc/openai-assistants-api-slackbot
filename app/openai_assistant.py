@@ -63,9 +63,16 @@ class ConversationsManager:
             thread = openai.beta.threads.create(messages=[])
             self.storage.set_value(external_id, thread.id)
             thread_id = thread.id
-
-        openai.beta.threads.messages.create(thread_id=thread_id, content=user_input, role='user')
-        run = self._create_run(self.assistant_id, thread_id)
+        try:
+            openai.beta.threads.messages.create(thread_id=thread_id, content=user_input, role='user')
+            run = self._create_run(self.assistant_id, thread_id)
+        except:
+            print('couldnt add message')
+            try:
+                runs = client.beta.threads.runs.list(thread_id)[0]
+            except:
+                print('couldnt retrieve run either')
+                return
 
         while run.status not in ["completed", "failed"]:
             run = self._update_run_status(run, thread_id)
