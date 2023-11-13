@@ -2,6 +2,11 @@ import configparser
 import os
 from pathlib import Path
 
+#Fix SQLLIte to the version required by 
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 # get the absolute path of the current script
 script_location = Path(os.path.abspath(__file__))
 

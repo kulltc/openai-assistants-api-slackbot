@@ -96,7 +96,7 @@ class ConversationsManager:
         try:
             return openai.beta.threads.runs.submit_tool_outputs(thread_id=thread_id, run_id=run.id, tool_outputs=tool_outputs)
         except Exception as err:
-            print('Error returning tool outputs:', err, run)
+            print('Error returning tool outputs:', err, tool_outputs)
             raise err
 
     def _process_tool_calls(self, run):
@@ -107,6 +107,8 @@ class ConversationsManager:
             arguments = json.loads(tool_call.function.arguments)
             try:
                 output = globals()[function_name](**arguments)
+                if (not isinstance(output, str)):
+                    output = str(output)
             except Exception as err:
                 output = {'error': str(err)}
             tool_outputs.append({"tool_call_id": tool_call.id, "output": output})
