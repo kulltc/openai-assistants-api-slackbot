@@ -38,8 +38,10 @@ def search_closest_filenames(root_dir, filename, num_matches=5):
     }
 
 def search_sql_file(searchTerm):
-    return json.dumps(search_closest_filenames(ROOT, searchTerm))
-
+    try:
+        return json.dumps(search_closest_filenames(ROOT, searchTerm))
+    except Exception as e:
+        return json.dumps({"error": e})
 
 def read_sql_file(root_dir, file_path):
     # Convert both paths to absolute paths
@@ -58,7 +60,10 @@ def read_sql_file(root_dir, file_path):
         raise FileNotFoundError(f"No SQL file found at {file_path}")
 
 def get_sql_file(location):
-    return read_sql_file(ROOT, location)
+    try:
+        return read_sql_file(ROOT, location)
+    except Exception as e:
+        return json.dumps({"error": e})
 
 # print(search_sql_file('EmployeeBookedHours'))
 # print(get_sql_file('dbo\\Tables\\Facts\\FactEmployeeHours.sql'))
